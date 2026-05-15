@@ -53,9 +53,22 @@ def simulate_2d_grid(ips: IPSonPeriodicGrid, ms: float, time_steps: int) -> None
 
     colors = ips.current_grid.colors
 
-    # Display the initial grid state as a heatmap;
+    # Display the initial grid state as a colormap;
     # vmin/vmax are fixed to the full color range to keep the colormap stable across frames
     im = ax.imshow(ips.current_grid.grid, cmap='viridis', vmin=0, vmax=colors - 1)
+
+    # Add a text element to display the current simulation time
+    frame_text = ax.text(
+    0.5, -0.05, "",                # x, y in axes coordinates
+    transform=ax.transAxes,
+    ha="center",
+    va="top",
+    fontsize=12
+    )
+
+    # Save end_time, dt and time_steps for use in the animation update function
+    end_time = ips.end_time
+    dt = ips.dt
 
     def update(frame):
         """
@@ -67,19 +80,23 @@ def simulate_2d_grid(ips: IPSonPeriodicGrid, ms: float, time_steps: int) -> None
         # Advance the simulation by the specified number of time steps
         ips.timesteps(time_steps)
 
-        # Update the heatmap with the new grid state
+        # Update the colormap with the new grid state
         im.set_array(ips.current_grid.grid)
-        return [im]
+
+        # Update the frame text to show the current simulation time
+        frame_text.set_text(f"Time: {frame * time_steps * dt:.2f}/ {end_time:.2f}")
+        return [im, frame_text]
 
     # Total number of frames = total simulation time divided by a single time step
-    frames = int(ips.end_time / ips.dt)
+    frames = int(end_time / (dt * time_steps))
 
     anim = FuncAnimation(
         fig=fig,
         func=update,       # Called once per frame
         frames=frames,     # Total number of frames to render
         interval=ms,       # Milliseconds between frames
-        blit=False         # Full redraw each frame (blit=True would be faster but less compatible)
+        blit=False,         # Full redraw each frame 
+        repeat=False       # Do not loop the animation
     )
 
     plt.show()
