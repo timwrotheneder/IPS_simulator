@@ -62,7 +62,7 @@ ips = IPSonPeriodicGrid(current_grid=grid, local_maps_list=[rule], end_time=50.0
 simulate(ips, ms=10, time_steps=5)
 ```
 
-## Known Limitations / TODOs
+## TODOs
 
 - **Create video files from simulation**(`main.py`): Create video files from the simulations, as an example case
 - **Simultaneous local map application** (`ips.py`): local maps are currently applied sequentially within each time step. They should be applied simultaneously — all reading from the same grid snapshot — to avoid order-dependent artifacts.
