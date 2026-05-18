@@ -1,6 +1,6 @@
 # IPS Simulator
 
-A Python framework for simulating **Interacting Particle Systems (IPS)** on periodic grids using stochastic local transition rules.
+A Python framework for simulating **Interacting Particle Systems (IPS)** on periodic grids.
 
 ## Overview
 
