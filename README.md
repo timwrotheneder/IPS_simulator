@@ -67,7 +67,7 @@ simulate(ips, ms=10, time_steps=5)
 - **Create video files from simulation**(`main.py`): Create video files from the simulations, as an example case
 - **Simultaneous local map application** (`ips.py`): local maps are currently applied sequentially within each time step. They should be applied simultaneously — all reading from the same grid snapshot — to avoid order-dependent artifacts.
 - **1D visualization** (`simulation.py`): not yet implemented. Planned as a space-time diagram (rows = time, columns = cell index).
-- **3D visualization** (`simulation.py`): not yet implemented. Could render 2D slices or use a volumetric approach.
+- **3D visualization** (`simulation.py`): not yet implemented.
 
 ## License
 
