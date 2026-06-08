@@ -23,8 +23,8 @@ An IPS is a stochastic process where cells on a grid update their states based o
 ## Requirements
 
 - Python 3.10+
-- numpy
-- matplotlib
+- numpy>=1.24
+- matplotlib>=3.7
 
 Install dependencies with:
 ```bash
